@@ -90,9 +90,11 @@ class Graph:
 Quick tests
 
 '''
+'''
 g = Graph()
 g.addEdge('a', 10, 'b')
 g.addEdge('e', 10, 'c')
 g.addEdge('f', 10, 'd')
 l = g.listNodes()
 print(l)
+'''
