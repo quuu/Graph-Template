@@ -5,7 +5,7 @@ Directed
 
 from Edge import *
 
-class Graph:
+class DirectedGraph:
 
     '''
     Constructor of Graph object
@@ -16,6 +16,7 @@ class Graph:
     def __init__(self):
         # dictionary with key -> value : node -> adjacency list
         self.__nodes = {}
+        self.maintainRep = True
 
 
     '''
@@ -35,7 +36,8 @@ class Graph:
         if(start not in self.__nodes):
             self.__nodes[start] = []
         self.__nodes[start].append(Edge(value,end))
-        self.checkRep()
+        if(self.maintainRep is True):
+            self.checkRep()
 
     '''
     Gets neighbors of Node(node)
@@ -77,12 +79,48 @@ class Graph:
     ex: all edge weights are String and all nodes are Int
 
     Only need to checkRep when adding an edge? Otherwise immutable?
-    - All Edge labels are of same type
+    - All Edge labels are of same type x
     - All Node values are of the same type
-    - No reflexive edges
+    - No reflexive edges x
     '''
     def checkRep(self):
-        print("checking rep")
+        # checking for reflexive edge
+        try:
+            for key, value in self.__nodes.items():
+                for e in value:
+                    if(key == e.getNext()):
+                        raise Exception('There is a reflexive edge in the graph')
+        except Exception as err:
+            print(err.args)
+            raise
+
+        # checking for same edge types
+        try:
+            t=None
+            for key, value in self.__nodes.items():
+                for e in value:
+                    if(t is None):
+                        t = type(e.getLabel())
+                        continue
+                    if(type(e.getLabel()) != t):
+                        raise Exception('Edge value types not the same')
+        except Exception as err:
+            print(err.args)
+            raise
+
+        # checking for same node types
+        try:
+            t=None
+            for key, value in self.__nodes.items():
+                if(t is None):
+                    t = type(key)
+                    continue
+                if(type(key) != t):
+                    raise Exception('Node value types not the same')
+        except Exception as err:
+            print(err.args)
+            raise
+
 
 
 
@@ -90,11 +128,11 @@ class Graph:
 Quick tests
 
 '''
-'''
-g = Graph()
+
+g = DirectedGraph()
 g.addEdge('a', 10, 'b')
 g.addEdge('e', 10, 'c')
-g.addEdge('f', 10, 'd')
+g.addEdge('f', 10, 'b')
 l = g.listNodes()
 print(l)
-'''
+
