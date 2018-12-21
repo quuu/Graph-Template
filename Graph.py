@@ -1,6 +1,6 @@
 '''
 Graph class
-
+Directed
 '''
 
 from Edge import *
@@ -9,6 +9,9 @@ class Graph:
 
     '''
     Constructor of Graph object
+
+    @effects __nodes : initialized with empty dictionary
+    @modifies __nodes
     '''
     def __init__(self):
         # dictionary with key -> value : node -> adjacency list
@@ -25,6 +28,8 @@ class Graph:
     '''
 
     def addEdge(self, start, value, end):
+
+        # currently converts the node values to strings
         start = str(start)
         end = str(end)
         if(start not in self.__nodes):
@@ -36,16 +41,16 @@ class Graph:
     Gets neighbors of Node(node)
 
     @param node : node value to get neighbors of
-    @returns list of neighbors of Node(node)
+    @returns list  copy of neighbors of Node(node)
     '''
     def getNeighbors(self, node):
-        return self.__nodes[node]
+        return list(self.__nodes[node])
 
 
     '''
     Lists all the nodes in the graph
 
-    @returns list of keys in nodes
+    @returns list copy of keys in nodes
     '''
     def listNodes(self):
         return list(self.__nodes.keys())
@@ -59,6 +64,10 @@ class Graph:
     '''
     TODO: shortest path from one node to another
     given numerical edge labels
+
+    @param start : Node(start) to start at
+    @param end : Node(end) to end at
+    @return String of path to get from start to end, or that no path is found
     '''
     def shortestPath(self, start, end):
         return ""
@@ -66,6 +75,11 @@ class Graph:
     '''
     TODO: check representation to make sure types are consistent
     ex: all edge weights are String and all nodes are Int
+
+    Only need to checkRep when adding an edge? Otherwise immutable?
+    - All Edge labels are of same type
+    - All Node values are of the same type
+    - No reflexive edges
     '''
     def checkRep(self):
         print("checking rep")
@@ -76,10 +90,9 @@ class Graph:
 Quick tests
 
 '''
-'''
 g = Graph()
 g.addEdge('a', 10, 'b')
-g.addEdge('a', 10, 'c')
-g.addEdge('a', 10, 'd')
-print(g.getNeighbors('a'))
-'''
+g.addEdge('e', 10, 'c')
+g.addEdge('f', 10, 'd')
+l = g.listNodes()
+print(l)

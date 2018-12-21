@@ -5,3 +5,13 @@ This project was created because I was doing several different projects or assig
 This will serve as a template for future Graph based projects so that I can get straight to implementing the project instead of having to monotonously create a Graph object from scratch.
 
 
+## TODO:
+
+- Boolean option for undirected vs directed
+
+- Boolean option for checkRep or not (for large data)
+
+- Shortest path from one node to another
+
+- Different representations of a graph (coordinates?)
+
