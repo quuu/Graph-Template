@@ -23,6 +23,8 @@ class DirectedGraph:
     Add an edge from node value a to node value b
     values a and b get converted to string values automatically
 
+    TODO: allow node values not only be strings
+
     @param a : node value edge starts from
     @param b : node value edge points to
     @param value : edge weight between Node(a) and Node(b)
@@ -67,6 +69,8 @@ class DirectedGraph:
     TODO: shortest path from one node to another
     given numerical edge labels
 
+    @requires __nodes to have edge labels of ints or doubles
+
     @param start : Node(start) to start at
     @param end : Node(end) to end at
     @return String of path to get from start to end, or that no path is found
@@ -82,6 +86,9 @@ class DirectedGraph:
     - All Edge labels are of same type x
     - All Node values are of the same type
     - No reflexive edges x
+
+
+    @throws Exception if any of the representation invariants are broken
     '''
     def checkRep(self):
         # checking for reflexive edge
