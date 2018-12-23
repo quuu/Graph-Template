@@ -20,9 +20,20 @@ def shortestPath(graph, start, end):
 
     hd = heapdict.heapdict()
     hd[start]=0
+
+
     # main loop
     while(len(hd)):
 
+        '''
+        pop minimum item
+        compute distance traveled so far
+        see if it's a match
+            - return
+        add all neighbors NOT in visited of popped item
+            into the heapdict with the distance traveled
+        add popped item to visited list
+        '''
         current = heapq.heappop(q)
 
         #if the result is found
