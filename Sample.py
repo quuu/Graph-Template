@@ -1,17 +1,43 @@
 
 
 from Graph import *
+import heapdict
 import heapq
 '''
-Sample code for how to expand functionality of Graph class
-from outside the class
+TODO: shortest path from one node to another
+given numerical edge labels
 
-Implementation of Dijkstra's algorithm on a formed Directed Graph
+@requires __nodes to have edge labels of ints or doubles
+
+@param start : Node(start) to start at
+@param end : Node(end) to end at
+@return String of path to get from start to end, or that no path is found
 '''
 def shortestPath(graph, start, end):
     q = []
     visited = []
     heapq.heappush(q,start)
+
+    hd = heapdict.heapdict()
+    hd[start]=0
+    # main loop
+    while(len(hd)):
+
+        current = heapq.heappop(q)
+
+        #if the result is found
+        if(current == end):
+            print("found")
+            return
+
+        # add all neighbors to the queue
+        for e in graph.getNeighbors(current):
+            if(not e.getNext() in visited):
+                heapq.heappush(q,e.getNext())
+
+        # make sure not to revisit
+        visited.append(current)
+
     return q
 
 
