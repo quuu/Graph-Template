@@ -34,7 +34,10 @@ def shortestPath(graph, start, end):
             into the heapdict with the distance traveled
         add popped item to visited list
         '''
-        current = heapq.heappop(q)
+        
+        # current holds (key, priority)
+        current =  hd.popitem()
+        
 
         #if the result is found
         if(current == end):

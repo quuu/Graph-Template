@@ -48,6 +48,8 @@ class DirectedGraph:
     @returns list  copy of neighbors of Node(node)
     '''
     def getNeighbors(self, node):
+        if (node not in self.__nodes):
+            raise Exception('Node value not found')
         return list(self.__nodes[node])
 
 
@@ -78,8 +80,8 @@ class DirectedGraph:
     def shortestPath(self, start, end):
         return ""
 
-   '''
-    TODO: check representation to make sure types are consistent
+    '''
+   TODO: check representation to make sure types are consistent
     ex: all edge weights are String and all nodes are Int
 
     Only need to checkRep when adding an edge? Otherwise immutable?
@@ -141,5 +143,9 @@ g.addEdge('a', 10, 'b')
 g.addEdge('e', 10, 'c')
 g.addEdge('f', 10, 'b')
 l = g.listNodes()
+print(l)
+l = g.getNeighbors('e')
+print(l)
+l = g.getNeighbors('m')
 print(l)
 
