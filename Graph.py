@@ -37,7 +37,10 @@ class DirectedGraph:
         end = str(end)
         if(start not in self.__nodes):
             self.__nodes[start] = []
-        self.__nodes[start].append(Edge(value,end))
+        if (end not in self.__nodes):
+            self.__nodes[end] = []
+        self.__nodes[start].append(Edge(value, end))
+        self.__nodes[end].append(Edge(value,start))
         if(self.maintainRep is True):
             self.checkRep()
 
@@ -144,8 +147,8 @@ g.addEdge('e', 10, 'c')
 g.addEdge('f', 10, 'b')
 l = g.listNodes()
 print(l)
-l = g.getNeighbors('e')
-print(l)
-l = g.getNeighbors('m')
-print(l)
+# l = g.getNeighbors('e')
+# print(l)
+# l = g.getNeighbors('m')
+# print(l)
 

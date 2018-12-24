@@ -14,18 +14,21 @@ given numerical edge labels
 @return String of path to get from start to end, or that no path is found
 '''
 def shortestPath(graph, start, end):
-    q = []
-    visited = []
-    heapq.heappush(q,start)
 
+    visited = []
+    dist = {}
     hd = heapdict.heapdict()
+    dist[start]=0
     hd[start]=0
 
 
     # main loop
-    while(len(hd)):
+    while (len(hd)):
 
         '''
+        save the path so far in an array 
+        containing arrays
+
         pop minimum item
         compute distance traveled so far
         see if it's a match
@@ -36,30 +39,33 @@ def shortestPath(graph, start, end):
         '''
         
         # current holds (key, priority)
-        current =  hd.popitem()
-        
+        current = hd.popitem()
+        print(current)
 
-        #if the result is found
-        if(current == end):
-            print("found")
+        # if result is found
+        if (current[0] is end):
+            print('found')
             return
-
+    
         # add all neighbors to the queue
-        for e in graph.getNeighbors(current):
-            if(not e.getNext() in visited):
-                heapq.heappush(q,e.getNext())
+        for e in graph.getNeighbors(current[0]):
+            if (not e.getNext() in visited):
+                hd[e.getNext()] = e.getLabel()
 
         # make sure not to revisit
-        visited.append(current)
+        visited.append(current[0])
 
-    return q
+    return
 
 
 if __name__ == '__main__':
     g = DirectedGraph()
 
     # read in data for the graph here
-    g.addEdge('a',10,'c')
+    g.addEdge('a',1000,'c')
+    g.addEdge('a',10,'r')
+    g.addEdge('a',10,'t')
+    g.addEdge('a',10,'y')
     g.addEdge('c',10,'d')
     g.addEdge('d',10,'f')
     # call a function here
