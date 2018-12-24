@@ -1,5 +1,3 @@
-
-
 from Graph import *
 import heapdict
 import heapq
@@ -21,6 +19,7 @@ def shortestPath(graph, start, end):
     dist[start]=0
     hd[start]=0
 
+    
 
     # main loop
     while (len(hd)):
@@ -66,8 +65,9 @@ if __name__ == '__main__':
     g.addEdge('a',10,'r')
     g.addEdge('a',10,'t')
     g.addEdge('a',10,'y')
-    g.addEdge('c',10,'d')
-    g.addEdge('d',10,'f')
+    g.addEdge('c', 10, 'd')
+    g.addEdge('d',20,'e')
+    g.addEdge('e',10,'f')
     # call a function here
     print(shortestPath(g,'a','f'))
     print("done")

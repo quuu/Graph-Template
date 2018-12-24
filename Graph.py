@@ -5,7 +5,7 @@ Directed
 
 from Edge import *
 
-class DirectedGraph:
+class DirectedGraph(object):
 
     '''
     Constructor of Graph object
@@ -13,10 +13,11 @@ class DirectedGraph:
     @effects __nodes : initialized with empty dictionary
     @modifies __nodes
     '''
-    def __init__(self):
+    def __init__(self, maintain=True):
         # dictionary with key -> value : node -> adjacency list
         self.__nodes = {}
-        self.maintainRep = True
+        self.maintainRep = maintain
+
 
 
     '''
@@ -40,7 +41,7 @@ class DirectedGraph:
         if (end not in self.__nodes):
             self.__nodes[end] = []
         self.__nodes[start].append(Edge(value, end))
-        self.__nodes[end].append(Edge(value,start))
+        # self.__nodes[end].append(Edge(value,start))
         if(self.maintainRep is True):
             self.checkRep()
 
@@ -141,7 +142,7 @@ Quick tests
 
 '''
 
-g = DirectedGraph()
+g = DirectedGraph(False)
 g.addEdge('a', 10, 'b')
 g.addEdge('e', 10, 'c')
 g.addEdge('f', 10, 'b')
