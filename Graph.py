@@ -97,7 +97,7 @@ class DirectedGraph:
         try:
             for key, value in self.__nodes.items():
                 for e in value:
-                    if(key == e.getNext()):
+                    if(key is e.getNext()):
                         raise Exception('There is a reflexive edge in the graph')
         except Exception as err:
             print(err.args)
@@ -111,7 +111,7 @@ class DirectedGraph:
                     if(t is None):
                         t = type(e.getLabel())
                         continue
-                    if(type(e.getLabel()) != t):
+                    if(not type(e.getLabel()) is t):
                         raise Exception('Edge value types not the same')
         except Exception as err:
             print(err.args)
@@ -124,7 +124,7 @@ class DirectedGraph:
                 if(t is None):
                     t = type(key)
                     continue
-                if(type(key) != t):
+                if(not type(key) is t):
                     raise Exception('Node value types not the same')
         except Exception as err:
             print(err.args)
