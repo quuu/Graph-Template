@@ -15,6 +15,7 @@ def shortestPath(graph, start, end):
 
     visited = []
     dist = {}
+    prev={}
     hd = heapdict.heapdict()
     dist[start]=0
     hd[start]=0
