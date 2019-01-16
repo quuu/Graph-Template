@@ -7,6 +7,8 @@ This will serve as a template for future Graph based projects so that I can get 
 
 ## TODO:
 
+- Utilizie pyplot for a network graph display
+
 - Make this a pip package?
 
 - Boolean option for undirected vs directed
